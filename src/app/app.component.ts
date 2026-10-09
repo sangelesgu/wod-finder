@@ -8,6 +8,5 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
 })
 export class App {
-  protected readonly title = signal('Wod-Finder');
   public appName = 'Wod-Finder';
 }
