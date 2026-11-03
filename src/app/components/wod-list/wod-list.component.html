@@ -1,0 +1,9 @@
+<section class="wod-list">
+  @for (wod of wods; track wod.id) {
+    <div (click)="selectWod(wod)">
+      <app-wod-card [wod]="wod" />
+    </div>
+  } @empty {
+    <p>No se han encontrado entrenamientos.</p>
+  }
+</section>

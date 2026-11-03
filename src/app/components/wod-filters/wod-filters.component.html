@@ -1,0 +1,47 @@
+<form #filtersForm="ngForm" class="wod-filters" (ngSubmit)="applyFilters()">
+  <div class="form-field">
+    <label for="search">Buscar entrenamiento</label>
+
+    <input
+      autocomplete="off"
+      id="search"
+      type="text"
+      name="search"
+      [(ngModel)]="search"
+      required
+      minlength="3"
+      placeholder="Introduce al menos 3 caracteres"
+      #searchInput="ngModel"
+    />
+
+    @if (searchInput.invalid && searchInput.touched) {
+      <div class="error-message" role="alert">
+        @if (searchInput.errors?.['required']) {
+          <p>El campo de búsqueda es obligatorio.</p>
+        }
+
+        @if (searchInput.errors?.['minlength']) {
+          <p>Debes introducir al menos 3 caracteres.</p>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="form-field">
+    <label for="category">Categoría</label>
+
+    <select id="category" name="category" [(ngModel)]="category">
+      <option value="Todas">Todas las categorías</option>
+      <option value="AMRAP">AMRAP</option>
+      <option value="EMOM">EMOM</option>
+      <option value="For Time">For Time</option>
+      <option value="Chipper">Chipper</option>
+    </select>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" [disabled]="filtersForm.invalid">Aplicar filtros</button>
+
+    <button type="button" (click)="resetFilters(filtersForm)">Restablecer</button>
+  </div>
+</form>

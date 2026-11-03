@@ -1,0 +1,15 @@
+<article class="wod-card">
+  <h2>{{ wod.name }}</h2>
+
+  <p>{{ wod.description }}</p>
+
+  <div class="wod-details">
+    <app-wod-category [category]="wod.category" />
+    <span>Duración: {{ wod.durationMinutes }} minutos</span>
+    <span>Fecha: {{ wod.date }}</span>
+  </div>
+
+  @if (wod.featured) {
+    <span class="featured">Destacado</span>
+  }
+</article>

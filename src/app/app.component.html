@@ -1,28 +1,55 @@
-<main class="container">
+<a class="skip-link" href="#main-content"> Saltar al contenido principal </a>
+<main id="main-content" class="container">
   <header>
     <h1>{{ appName }}</h1>
-
-    <p>
-      Aplicació desenvolupada per Samuel Angeles per consultar entrenaments WOD (Workout of the Day)
-      i explorar diferents tipus d'entrenaments de fitness funcional.
-    </p>
+    <p>Explora entrenamientos, descubre nuevas rutinas y encuentra tu próximo desafío.</p>
   </header>
 
-  <section class="project-card">
-    <h2>Dades del projecte</h2>
+  <app-wod-filters (filtersChanged)="onFiltersChanged($event)" />
 
-    <ul>
-      <li><strong>Framework:</strong> Angular 22</li>
-      <li><strong>Estils:</strong> SCSS</li>
-      <li><strong>Gestor de paquets:</strong> npm</li>
-      <li><strong>Autor:</strong> Samuel Angeles</li>
-    </ul>
+  <section class="wod-section">
+    <h2>Listado de entrenamientos</h2>
+
+    <p aria-live="polite" role="status">
+      Mostrando {{ filteredWods.length }} de {{ wods.length }}
+      entrenamientos.
+    </p>
+
+    @if (filteredWods.length > 0) {
+      <app-wod-list [wods]="filteredWods" (wodSelected)="onWodSelected($event)" />
+    } @else {
+      <p class="empty-message" role="status">
+        No se han encontrado entrenamientos que coincidan con los filtros.
+      </p>
+    }
   </section>
 
-  <aside>
-    Aquesta és la configuració inicial del projecte. En les següents activitats s'afegiran
-    components, serveis i navegació.
-  </aside>
+  <section class="wod-detail">
+    <h2>Detalle del entrenamiento</h2>
 
-  <p class="status">Projecte base llest - Hot Reload OK</p>
+    @if (selectedWod) {
+      <article>
+        <h3>{{ selectedWod.name }}</h3>
+
+        <p>{{ selectedWod.description }}</p>
+
+        <p>
+          <strong>Categoría:</strong>
+          {{ selectedWod.category }}
+        </p>
+
+        <p>
+          <strong>Duración:</strong>
+          {{ selectedWod.durationMinutes }} minutos
+        </p>
+
+        <p>
+          <strong>Fecha:</strong>
+          {{ selectedWod.date | date: 'dd/MM/yyyy' }}
+        </p>
+      </article>
+    } @else {
+      <p>Selecciona un entrenamiento para consultar sus detalles.</p>
+    }
+  </section>
 </main>

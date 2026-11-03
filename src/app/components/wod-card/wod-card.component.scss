@@ -1,0 +1,27 @@
+.wod-card {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+
+  h2 {
+    margin-top: 0;
+  }
+}
+
+.wod-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.featured {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  background-color: #fff0c2;
+  font-weight: bold;
+}

@@ -1,51 +1,63 @@
 # Wod-Finder
 
-## Autor/a
-
-Samuel Angeles
-
 ## Descripció
 
-Aplicació Angular per consultar entrenaments WOD (Workout of the Day) i explorar diferents tipus d'entrenaments de fitness funcional.
+Wod-Finder és una aplicació web desenvolupada amb Angular que permet consultar entrenaments, visualitzar-ne les característiques i filtrar-los per nom i categoria.
 
-## Versions utilitzades
+## Tecnologies i versions
 
-- Node.js 24.15.0
-- npm 11.12.1
-- Angular CLI 22.2.2
-- Angular 22.x
-- Git 2.45.2
+- Node.js: 24.15.0
+- npm: 11.12.1
+- Angular: 22.x
+- Angular CLI: 22.x
+- TypeScript
+- SCSS
 
-## Com crear i executar el projecte
+## Instal·lació
 
-Instal·lació de dependències:
+Clonar el repositori:
+
+```bash
+git clone https://github.com/sangelesgu/wod-finder.git
+cd ioc-angular-wod-finder-samuel-angeles
+```
+
+Instal·lar les dependències:
 
 ```bash
 npm install
 ```
 
-Execució en desenvolupament:
+## Execució
 
 ```bash
 ng serve
 ```
 
-Accés a l'aplicació:
+Obrir `http://localhost:4200/` al navegador.
 
-```text
-http://localhost:4200
-```
+## Branca de treball
 
-## Estat de l'EAC1
+Els canvis de l'EAC2 s'han desenvolupat a la branca:
 
-- Projecte Angular creat.
-- Routing configurat.
-- SCSS configurat.
-- Estructura base creada.
-- Branques Git creades i publicades.
-- Personalització inicial completada.
-- Aplicació executada correctament.
+`ra2-components`
 
-## Enllaç del repositori
+## Components creats
+
+- **WodList:** mostra el llistat d'entrenaments i comunica les seleccions.
+- **WodCard:** mostra la informació individual de cada entrenament.
+- **WodCategoryComponent:** mostra la categoria mitjançant una etiqueta.
+- **WodFilters:** permet cercar i filtrar entrenaments.
+
+## Funcionalitats
+
+- Llistat d'entrenaments amb dades mock.
+- Cerca per nom i filtratge per categoria.
+- Validació del formulari.
+- Selecció d'entrenaments i visualització del detall.
+- Comptador de resultats i missatge quan no hi ha coincidències.
+- Interfície responsive i millores d'accessibilitat.
+
+## Repositori
 
 https://github.com/sangelesgu/wod-finder
