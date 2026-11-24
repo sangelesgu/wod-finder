@@ -1,17 +1,24 @@
 # Wod-Finder
 
-## Descripció
+Aplicació web desenvolupada amb Angular per explorar, consultar i filtrar entrenaments de CrossFit.
 
-Wod-Finder és una aplicació web desenvolupada amb Angular que permet consultar entrenaments, visualitzar-ne les característiques i filtrar-los per nom i categoria.
+## Tecnologies utilitzades
 
-## Tecnologies i versions
-
-- Node.js: 24.15.0
-- npm: 11.12.1
-- Angular: 22.x
-- Angular CLI: 22.x
+- Angular 22
 - TypeScript
-- SCSS
+- Node.js 24.15.0
+- npm 11
+- RxJS
+- json-server 1.0.0-beta.15
+- Reactive Forms
+
+## Requisits previs
+
+Per executar el projecte és necessari tenir instal·lats:
+
+- Node.js 24.15.0 o superior
+- npm
+- Git
 
 ## Instal·lació
 
@@ -19,7 +26,12 @@ Clonar el repositori:
 
 ```bash
 git clone https://github.com/sangelesgu/wod-finder.git
-cd ioc-angular-wod-finder-samuel-angeles
+```
+
+Accedir al directori:
+
+```bash
+cd wod-finder
 ```
 
 Instal·lar les dependències:
@@ -28,36 +40,88 @@ Instal·lar les dependències:
 npm install
 ```
 
-## Execució
+## Execució del projecte
+
+### 1. Arrencar l'API
+
+En una primera terminal:
 
 ```bash
-ng serve
+npm run api
 ```
 
-Obrir `http://localhost:4200/` al navegador.
+L'API local estarà disponible a:
 
-## Branca de treball
+`http://localhost:3000/wods`
 
-Els canvis de l'EAC2 s'han desenvolupat a la branca:
+### 2. Arrencar Angular
 
-`ra2-components`
+En una segona terminal:
 
-## Components creats
+```bash
+npx ng serve
+```
 
-- **WodList:** mostra el llistat d'entrenaments i comunica les seleccions.
-- **WodCard:** mostra la informació individual de cada entrenament.
-- **WodCategoryComponent:** mostra la categoria mitjançant una etiqueta.
-- **WodFilters:** permet cercar i filtrar entrenaments.
+L'aplicació estarà disponible a:
+
+`http://localhost:4200`
+
+## Estructura del projecte
+
+```text
+src/
+├── app/
+│   ├── adapters/
+│   ├── components/
+│   ├── constants/
+│   ├── models/
+│   ├── services/
+│   └── validators/
+├── docs/
+```
+
+La documentació tècnica es troba a la carpeta `docs/`:
+
+- `models.md`: models de dades i adaptadors.
+- `serveis.md`: serveis HTTP i gestió d'estats.
+- `formularis.md`: formularis reactius, validacions i historial.
 
 ## Funcionalitats
 
-- Llistat d'entrenaments amb dades mock.
-- Cerca per nom i filtratge per categoria.
-- Validació del formulari.
-- Selecció d'entrenaments i visualització del detall.
-- Comptador de resultats i missatge quan no hi ha coincidències.
-- Interfície responsive i millores d'accessibilitat.
+- Consulta d'entrenaments mitjançant una API local.
+- Cerca per nom amb coincidències parcials.
+- Filtratge per categoria.
+- Formularis reactius amb validacions síncrones i asíncrones.
+- Historial de cerques persistent amb localStorage.
+- Selecció d'entrenaments per consultar-ne els detalls.
+- Gestió d'errors i reintent de peticions.
 
-## Repositori
+## Serveis HTTP
 
-https://github.com/sangelesgu/wod-finder
+El servei `WodService` centralitza les peticions HTTP:
+
+- GET: obtenir entrenaments.
+- POST: crear entrenaments.
+- Cerca reactiva mitjançant RxJS i `switchMap`.
+
+Les dades rebudes de l'API es transformen mitjançant `WodAdapter`.
+
+## Branca de desenvolupament
+
+Branca de treball de l'EAC3:
+
+`ra3-serveis`
+
+## Comandes addicionals
+
+Executar les proves:
+
+```bash
+npm test
+```
+
+Generar la compilació de producció:
+
+```bash
+npm run build
+```

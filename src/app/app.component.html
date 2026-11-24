@@ -15,7 +15,14 @@
       entrenamientos.
     </p>
 
-    @if (filteredWods.length > 0) {
+    @if (isLoading) {
+      <p role="status" aria-live="polite">Cargando entrenamientos...</p>
+    } @else if (errorMessage) {
+      <div role="alert" class="error-message">
+        <p>{{ errorMessage }}</p>
+        <button type="button" (click)="retryLastQuery()">Reintentar</button>
+      </div>
+    } @else if (filteredWods.length > 0) {
       <app-wod-list [wods]="filteredWods" (wodSelected)="onWodSelected($event)" />
     } @else {
       <p class="empty-message" role="status">

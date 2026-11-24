@@ -1,4 +1,4 @@
-<form #filtersForm="ngForm" class="wod-filters" (ngSubmit)="applyFilters()">
+<form [formGroup]="filtersForm" class="wod-filters" (ngSubmit)="applyFilters()">
   <div class="form-field">
     <label for="search">Buscar entrenamiento</label>
 
@@ -6,22 +6,22 @@
       autocomplete="off"
       id="search"
       type="text"
-      name="search"
-      [(ngModel)]="search"
-      required
-      minlength="3"
+      formControlName="search"
       placeholder="Introduce al menos 3 caracteres"
-      #searchInput="ngModel"
     />
 
-    @if (searchInput.invalid && searchInput.touched) {
+    @if (filtersForm.controls.search.pending) {
+      <p role="status" aria-live="polite">Comprobando disponibilidad de entrenamientos...</p>
+    }
+
+    @if (filtersForm.controls.search.invalid && filtersForm.controls.search.touched) {
       <div class="error-message" role="alert">
-        @if (searchInput.errors?.['required']) {
-          <p>El campo de búsqueda es obligatorio.</p>
+        @if (filtersForm.controls.search.errors?.['minlength']) {
+          <p>Debes introducir al menos 3 caracteres.</p>
         }
 
-        @if (searchInput.errors?.['minlength']) {
-          <p>Debes introducir al menos 3 caracteres.</p>
+        @if (filtersForm.controls.search.errors?.['wodNotFound']) {
+          <p>No se han encontrado entrenamientos con ese nombre.</p>
         }
       </div>
     }
@@ -30,7 +30,7 @@
   <div class="form-field">
     <label for="category">Categoría</label>
 
-    <select id="category" name="category" [(ngModel)]="category">
+    <select id="category" formControlName="category">
       <option value="Todas">Todas las categorías</option>
       <option value="AMRAP">AMRAP</option>
       <option value="EMOM">EMOM</option>
@@ -40,8 +40,24 @@
   </div>
 
   <div class="form-actions">
-    <button type="submit" [disabled]="filtersForm.invalid">Aplicar filtros</button>
+    <button type="submit">Aplicar filtros</button>
 
-    <button type="button" (click)="resetFilters(filtersForm)">Restablecer</button>
+    <button type="button" (click)="resetFilters()">Restablecer</button>
   </div>
 </form>
+
+@if (searchHistory.length > 0) {
+  <div class="search-history">
+    <h3>Historial de búsquedas</h3>
+
+    <ul>
+      @for (term of searchHistory; track $index) {
+        <li>
+          <button type="button" (click)="selectHistory(term)" class="search-history-button">
+            {{ term }}
+          </button>
+        </li>
+      }
+    </ul>
+  </div>
+}
